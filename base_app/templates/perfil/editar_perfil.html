@@ -1,0 +1,128 @@
+{% extends "layout/perfil_usuarios.html" %}
+
+{% load math_filters %}
+
+
+{% block content %}
+<style>
+    /* Form Container */
+    .container_form {
+        max-width: 800px;
+        margin: 20px auto;
+        background-color: #7a7f84;;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+
+    .container_form h3 {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 15px;
+        color: black;
+    }
+
+    /* Form */
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .form-group input, .form-group select {
+        width: 100%;
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .col-half {
+        flex: 0 0 48%;
+    }
+
+    .btn-save {
+        display: block;
+        flex-wrap: wrap;
+        padding: 10px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: #333;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
+
+
+<!-- Formulario de Información -->
+<div class="container_form">
+<h3>Editar Perfil</h3>
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <div class="row">
+        <!-- Campos del usuario -->
+        <div class="form-group col-half">
+            <label for="nombreUsuario">Nombre de Usuario*</label>
+            {{ user_form.username }}
+        </div>
+        <div class="form-group col-half">
+            <label for="email">E-mail*</label>
+            {{ user_form.email }}
+        </div>
+        <div class="form-group col-half">
+            <label for="nombre">Nombre*</label>
+            {{ user_form.first_name }}
+        </div>
+        <div class="form-group col-half">
+            <label for="apellidos">Apellido*</label>
+            {{ user_form.last_name }}
+        </div>
+
+        <!-- Campos del perfil -->
+        <div class="form-group col-half">
+            <label for="contacto">Número de Contacto*</label>
+            {{ actu_info_form.tfno }}
+        </div>
+        <div class="form-group col-half">
+            <label for="pais">País*</label>
+            {{ actu_info_form.pais }}
+        </div>
+        <div class="form-group col-half">
+            <label for="region">Región*</label>
+            {{ actu_info_form.region }}
+        </div>
+        <div class="form-group col-half">
+            <label for="ciudad">Ciudad*</label>
+            {{ actu_info_form.ciu }}
+        </div>
+        
+    </div>
+
+    <button type="submit" class="btn-save">Guardar Cambios</button>
+</form>
+
+
+
+<br/><br/>
+    <button class="btn-save " onclick="window.location.href='/editar_cont'">Cambiar Contraseña</button>
+
+    
+</div>
+
+
+{% endblock content %}

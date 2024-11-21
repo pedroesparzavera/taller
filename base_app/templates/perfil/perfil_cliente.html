@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil de Usuario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Estilos personalizados */
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+        }
+        .profile-header {
+            position: relative;
+            background-color: #e9ecef;
+            height: 200px;
+            text-align: center;
+        }
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            position: absolute;
+            bottom: -50px;
+            left: 20px;
+        }
+        .profile-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            padding-top: 60px;
+        }
+        .vendor-info {
+            margin-left: 140px;
+        }
+        .vendor-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .vendor-followers {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .btn-contact, .btn-follow {
+            margin-left: 10px;
+        }
+        .tab-content {
+            margin-top: 20px;
+        }
+        .info-box {
+            padding: 20px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .publications {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .product-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            text-align: center;
+        }
+        .pagination {
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .advertisement {
+            background-color: #e9ecef;
+            text-align: center;
+            padding: 30px;
+            margin: 40px 0;
+            color: #6c757d;
+        }
+
+        footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            margin-top: 30px;
+        }
+
+        .footer-link {
+            text-align: center;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+        <a class="navbar-brand" href="#">LOGO</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item"><a class="nav-link" href="home">Inicio</a></li>
+            <li class="nav-item"><a class="nav-link" href="productos">Productos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Tecnología</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Hardware</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Periféricos</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Otros</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Ayuda</a></li>
+            <li class="nav-item"><a class="nav-link" href="publicar">Publicar</a></li>
+            </ul>
+            <form class="d-flex">
+            <input class="form-control me-2" type="search" placeholder="Busca tu producto" aria-label="Search">
+            <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+            <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <img src="https://via.placeholder.com/50" class="rounded-circle" alt="Profile">
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="#">Iniciar Sesión</a></li>
+                <li><a class="dropdown-item" href="#">Registrarse</a></li>
+                </ul>
+            </li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+
+    <!-- Encabezado del perfil -->
+    <div class="profile-header">
+        <img src="https://via.placeholder.com/100" alt="Profile Image" class="profile-image">
+    </div>
+    <div class="container profile-info">
+        <div class="vendor-info">
+            <div class="vendor-name">Nombre del Vendedor</div>
+            <div class="vendor-followers">12mil seguidores</div>
+        </div>
+        <div>
+            <button class="btn btn-outline-primary btn-contact">Contactar al Vendedor</button>
+            <button class="btn btn-primary btn-follow">Seguir</button>
+        </div>
+    </div>
+
+    <!-- Pestañas de Publicaciones e Información -->
+    <div class="container">
+        <ul class="nav nav-tabs justify-content-center"  id="profileTabs" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="publicaciones-tab" data-bs-toggle="tab" data-bs-target="#publicaciones" type="button" role="tab" aria-controls="publicaciones" aria-selected="true">Publicaciones</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="informacion-tab" data-bs-toggle="tab" data-bs-target="#informacion" type="button" role="tab" aria-controls="informacion" aria-selected="false">Información</button>
+            </li>
+        </ul>
+        <div class="tab-content" id="profileTabsContent">
+            <!-- Publicaciones -->
+            <div class="tab-pane fade show active" id="publicaciones" role="tabpanel" aria-labelledby="publicaciones-tab">
+                <div class="product-grid mt-4">
+                    <!-- Tarjetas de productos -->
+                    <div class="product-card">
+                        <img src="https://via.placeholder.com/200" alt="Producto" class="img-fluid rounded">
+                        <h5 class="mt-2">Nombre del Producto</h5>
+                        <p>$123.456</p>
+                    </div>
+                    <!-- Puedes agregar más tarjetas aquí -->
+                </div>
+            </div>
+            
+            <!-- Información -->
+            <div class="tab-pane fade" id="informacion" role="tabpanel" aria-labelledby="informacion-tab">
+                <div class="info-box">
+                    <p><strong>Sexo:</strong> Femenino</p>
+                    <p><strong>Pronombres:</strong> Ella</p>
+                    <p><strong>Fecha de nacimiento:</strong> 3 de Mayo del 1974</p>
+                    <p><strong>Email:</strong> example@gmail.com</p>
+                    <p><strong>Número de contacto:</strong> +56 9 1111 1111</p>
+                    <p><strong>País:</strong> País de Usuario</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav aria-label="Paginación de productos">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><span class="page-link">...</span></li>
+            <li class="page-item"><a class="page-link" href="#">10</a></li>
+        </ul>
+    </nav>
+
+
+    <div class="advertisement">
+        PUBLICIDAD
+    </div>
+
+    <footer class="text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="https://via.placeholder.com/100" class="img-fluid mb-3" alt="Logo">
+                    <p>Nuestra misión es ayudar a los consumidores a escoger el producto perfecto para sus necesidades y
+                        presupuestos.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Navega</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="footer-link">Tecnología</a></li>
+                        <li><a href="#" class="footer-link">Hardware</a></li>
+                        <li><a href="#" class="footer-link">Periféricos</a></li>
+                        <li><a href="#" class="footer-link">Otros</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Legal</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="footer-link">Términos y condiciones</a></li>
+                        <li><a href="#" class="footer-link">Preguntas frecuentes</a></li>
+                        <li><a href="#" class="footer-link">Política de privacidad</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Contacto</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="footer-link">Formulario web</a></li>
+                    </ul>
+                </div>
+            </div>
+            <p class="text-muted">NOMBRE PÁGINA WEB 2024 | Todos los derechos reservados | Santiago de Chile</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript para Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

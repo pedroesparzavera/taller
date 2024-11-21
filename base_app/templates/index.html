@@ -1,0 +1,337 @@
+{% extends "layout/main.html" %}
+{%load static%}
+
+{% load math_filters %}
+
+
+{% block content %}
+<style>
+  .card{
+    background-color: #2a2a2a;
+    color: white;
+
+  }
+
+
+</style>
+
+
+
+    <div class="container mt-5 pt-5">
+        <h3 class="text-center mb-4">Lo más reciente</h3>
+        {% if productos_recientes_start %}
+        <div id="recentProductsCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+            <div class="row">
+                {% for producto in productos_recientes_start%}
+                <div class="col-md-3">
+                <div class="card">
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="{{ producto.nombre }}">
+                    <div class="card-body">
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text">${{producto.precio}}</p>
+    
+                    </div>
+                </div>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+            <div class="row">
+                {% for producto in productos_recientes_end %}
+                <div class="col-md-3">
+                <div class="card">
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="{{ producto.nombre }}">
+                    <div class="card-body">
+                    <h5 class="card-title">{{ producto.nombre }}</h5>
+                    <p class="card-text">${{producto.precio}}</p>
+                    </div>
+                </div>
+                </div>
+                {% endfor %}
+            </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#recentProductsCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#recentProductsCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+        </div>
+        <!--  En Caso de que haya problemas con la base de datos dejamos estos puntos como dummies-->
+        {%else %}
+        <div id="recentProductsCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <!-- Slide 1 -->
+            <div class="carousel-item active">
+            <div class="row">
+                <div class="col-md-3">
+                <div class="card">
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 1">
+                    <div class="card-body">
+                    <h5 class="card-title">Nombre del producto</h5>
+                    <p class="card-text">$123.456</p>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-3">
+                <div class="card">
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 2">
+                    <div class="card-body">
+                    <h5 class="card-title">Nombre del producto</h5>
+                    <p class="card-text">$123.456</p>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-3">
+                <div class="card">
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 3">
+                    <div class="card-body">
+                    <h5 class="card-title">Nombre del producto</h5>
+                    <p class="card-text">$123.456</p>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-3">
+                <div class="card">
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 4">
+                    <div class="card-body">
+                    <h5 class="card-title">Nombre del producto</h5>
+                    <p class="card-text">$123.456</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="carousel-item">
+            <div class="row">
+                <div class="col-md-3">
+                <div class="card">
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 5">
+                    <div class="card-body">
+                    <h5 class="card-title">Nombre del producto</h5>
+                    <p class="card-text">$123.456</p>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-3">
+                <div class="card">
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 6">
+                    <div class="card-body">
+                    <h5 class="card-title">Nombre del producto</h5>
+                    <p class="card-text">$123.456</p>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-3">
+                <div class="card">
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 7">
+                    <div class="card-body">
+                    <h5 class="card-title">Nombre del producto</h5>
+                    <p class="card-text">$123.456</p>
+                    </div>
+                </div>
+                </div>
+                <div class="col-md-3">
+                <div class="card">
+                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 8">
+                    <div class="card-body">
+                    <h5 class="card-title">Nombre del producto</h5>
+                    <p class="card-text">$123.456</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#recentProductsCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#recentProductsCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+        </div>
+        {% endif %}
+        <button class="btn btn-outline-primary btn-more mt-3">Ver más</button>
+  
+  </div>
+
+<!-- publicidad_ripley -->
+  <div class="container text-center mt-5" style="width: 800px;">
+    <div class="">
+      <img src="{% static 'makroplus.JPG' %}" class="card-img-top" alt="ripley">
+    </div>
+  </div>
+
+  <div class="container mt-5">
+    <h3 class="text-center mb-4">Artículos en Descuento</h3>
+    {% if productos_descuento_start %}
+    <div id="discountedProductsCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+          <div class="row">
+            {% for producto in productos_descuento_start %}
+            <div class="col-md-3">
+              <div class="card">
+                {% with descuento=producto.precio|multiply:producto.descuento %}
+                <div class="badge bg-warning text-dark">Bajó ${{descuento}}</div>
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 1">
+                <div class="card-body">
+                  <h5 class="card-title">{{producto.nombre}}</h5>
+                  <p class="card-text">${{producto.precio|substract:descuento}}</p>
+                </div>
+                {%endwith%}
+              </div>
+            </div>
+            {%endfor%}
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+          <div class="row">
+            {% for producto in productos_descuento_end %}
+            <div class="col-md-3">
+              <div class="card">
+                {% with descuento=producto.precio|multiply:producto.descuento %}
+                <div class="badge bg-warning text-dark">Bajó ${{descuento}}</div>
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 1">
+                <div class="card-body">
+                  <h5 class="card-title">{{producto.nombre}}</h5>
+                  <p class="card-text">${{producto.precio|substract:descuento}}</p>
+                </div>
+                {%endwith%}
+              </div>
+            </div>
+            {%endfor%}
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#discountedProductsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#discountedProductsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+    {% else %}
+    <div id="discountedProductsCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <!-- Slide 1 -->
+        <div class="carousel-item active">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="card">
+                <div class="badge bg-warning text-dark">Bajó $123.45</div>
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 1">
+                <div class="card-body">
+                  <h5 class="card-title">Nombre del producto</h5>
+                  <p class="card-text">$123.456</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card">
+                <div class="badge bg-warning text-dark">Bajó $123.45</div>
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 2">
+                <div class="card-body">
+                  <h5 class="card-title">Nombre del producto</h5>
+                  <p class="card-text">$123.456</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card">
+                <div class="badge bg-warning text-dark">Bajó $123.45</div>
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 3">
+                <div class="card-body">
+                  <h5 class="card-title">Nombre del producto</h5>
+                  <p class="card-text">$123.456</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card">
+                <div class="badge bg-warning text-dark">Bajó $123.45</div>
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 4">
+                <div class="card-body">
+                  <h5 class="card-title">Nombre del producto</h5>
+                  <p class="card-text">$123.456</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col-md-3">
+              <div class="card">
+                <div class="badge bg-warning text-dark">Bajó $123.45</div>
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 5">
+                <div class="card-body">
+                  <h5 class="card-title">Nombre del producto</h5>
+                  <p class="card-text">$123.456</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card">
+                <div class="badge bg-warning text-dark">Bajó $123.45</div>
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 6">
+                <div class="card-body">
+                  <h5 class="card-title">Nombre del producto</h5>
+                  <p class="card-text">$123.456</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card">
+                <div class="badge bg-warning text-dark">Bajó $123.45</div>
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 7">
+                <div class="card-body">
+                  <h5 class="card-title">Nombre del producto</h5>
+                  <p class="card-text">$123.456</p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card">
+                <div class="badge bg-warning text-dark">Bajó $123.45</div>
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 8">
+                <div class="card-body">
+                  <h5 class="card-title">Nombre del producto</h5>
+                  <p class="card-text">$123.456</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#discountedProductsCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#discountedProductsCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+    {% endif %}
+    <button class="btn btn-outline-primary btn-more mt-3">Ver más</button>
+  </div>
+
+
+{% endblock content %}

@@ -1,0 +1,122 @@
+{% extends "layout/perfil_usuarios.html" %}
+
+{% load math_filters %}
+
+
+{% block content %}
+<style>
+        /* Estilos personalizados */
+       
+        .publications {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .product-grid {
+            display: flex; /* Cambiamos grid por flexbox */
+            flex-wrap: wrap; /* Permitir que las tarjetas salten a otra fila si no caben */
+            gap: 15px; /* Espacio entre las tarjetas */
+            justify-content: center; /* Centrar las tarjetas horizontalmente */
+        }
+
+        .product-card {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 15px;
+            text-align: left;
+            width: 300px; /* Establecer un ancho fijo para todas las tarjetas */
+            height: 300px; /* Establecer una altura fija para uniformidad */
+            display: flex;
+            flex-direction: column; /* Alinear contenido verticalmente */
+            justify-content: space-between; /* Espaciado entre elementos internos */
+        }
+
+        .product-card img {
+            width: 100%; /* Asegura que la imagen ocupe todo el ancho disponible */
+            height: 200px; /* Altura fija para las imágenes */
+            object-fit: cover; /* Mantener proporción y cubrir el espacio */
+            border-radius: 8px;
+        }
+
+        .pagination {
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .advertisement {
+            background-color: #e9ecef;
+            text-align: center;
+            padding: 30px;
+            margin: 40px 0;
+            color: #6c757d;
+        }
+
+    </style>
+
+
+
+<!-- Pestañas de Publicaciones e Información -->
+<div class="container">
+    <ul class="nav nav-tabs justify-content-center"  id="profileTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="publicaciones-tab" data-bs-toggle="tab" data-bs-target="#publicaciones" type="button" role="tab" aria-controls="publicaciones" aria-selected="true">Publicaciones</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="informacion-tab" data-bs-toggle="tab" data-bs-target="#informacion" type="button" role="tab" aria-controls="informacion" aria-selected="false">Información</button>
+        </li>
+    </ul>
+    <div class="tab-content" id="profileTabsContent">
+        <!-- Publicaciones -->
+        <div class="tab-pane fade show active" id="publicaciones" role="tabpanel" aria-labelledby="publicaciones-tab">
+            <div class="product-grid">
+                {% for producto in productos %}
+                <!-- Tarjetas de productos -->
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/200" alt="Producto" class="img-fluid rounded">
+                    <h5 class="mt-2">{{ producto.nombre }}</h5>
+                    <p>${{ producto.precio }}</p>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        
+        
+        <!-- Información -->
+        <div class="tab-pane fade" id="informacion" role="tabpanel" aria-labelledby="informacion-tab">
+            <div class="info-box">
+                <p><strong>Nombre de Usuario:</strong> {{ user.username }}</p>
+                <p><strong>Nombre:</strong> {{ user.first_name }}</p>
+                <p><strong>Apellido:</strong> {{ user.last_name }}</p>
+                {% if perfil %}
+                    <p><strong>País:</strong> {{ perfil.pais }}</p>
+                    <p><strong>Región:</strong> {{ perfil.region }}</p>
+                    <p><strong>Ciudad:</strong> {{ perfil.ciu }}</p>
+                    <p><strong>Número de contacto:</strong> {{ perfil.tfno }}</p>
+                {% else %}
+                    <p>No se encontró información adicional del usuario.</p>
+                {% endif %}
+                <p><strong>Email:</strong> {{ user.email }}</p>
+            </div>
+        </div>
+        
+    </div>
+</div>
+
+<nav aria-label="Paginación de productos">
+    <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><span class="page-link">...</span></li>
+        <li class="page-item"><a class="page-link" href="#">10</a></li>
+    </ul>
+</nav>
+
+
+<div class="advertisement">
+    PUBLICIDAD
+</div>
+
+
+{% endblock content %}

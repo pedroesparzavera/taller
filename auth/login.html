@@ -1,0 +1,59 @@
+{% extends "layout/main2.html" %}
+
+{% load math_filters %}
+
+
+{% block content %}
+<style>
+    .registro_usu{
+        margin-top: 6%;
+    }
+
+    .btn{
+        margin-top: 2%;
+    }
+
+ 
+</style>
+
+<div class="registro_usu">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="">
+                <div class="card mt-3 shadow">
+                    <div class=" card-body"> 
+                        <form action="" method="POST">
+                            {% csrf_token %}
+                            <div class="text-center">
+                                <h4> Inicie Sesión</h4>
+                            </div>
+                            <hr>
+                
+
+                            <div class="form-group">
+                                <label for="">Nombre de Usuario</label>
+                                <input type="text" class="form-control" name="username" placeholder="Ingrese su Nombre de Usuario">
+                            </div>
+                            <div class="form-group">
+                                <label for="">Contraseña</label>
+                                <input type="password" class="form-control" name="password" placeholder="Ingrese su Contraseña">
+                            </div>
+
+                            <button type="submit" class="btn float-end shadow btn-success px-4"> Iniciar Sesión </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+    
+</div>
+
+
+{% endblock content %}

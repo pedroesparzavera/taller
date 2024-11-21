@@ -1,0 +1,55 @@
+{% load static %}
+<style>
+  footer {
+    background-color: #111;
+  }
+
+  .footer-link {
+    color: #989898;
+    text-decoration: none;
+  }
+
+  p {
+    color: #989898;
+  }
+
+  img {
+    height: 50%;
+    width: 50%;
+  }
+</style>
+
+<footer class="text-center">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3">
+        <img src="{% static 'logo.png' %}" class="img-fluid mb-3" alt="Logo">
+        <p>Nuestra misión es ayudar a los consumidores a escoger el producto perfecto para sus necesidades y presupuestos.</p>
+      </div>
+      <div class="col-md-3">
+        <h5>Navega</h5>
+        <ul class="list-unstyled">
+          <li><a class="footer-link" href="/productos/Tecnologia">Tecnología</a></li>
+          <li><a class="footer-link" href="/productos/Hardware">Hardware</a></li>
+          <li><a class="footer-link" href="/productos/Perifericos">Periféricos</a></li>
+          <li><a class="footer-link" href="/productos/Otros">Otros</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h5>Legal</h5>
+        <ul class="list-unstyled">
+          <li><a href="{% url 'terminos_condiciones' %}" class="footer-link" target="_blank">Términos y condiciones</a></li>
+          <li><a href="{% url 'preguntas_frecuentes' %}" class="footer-link" target="_blank">Preguntas frecuentes</a></li>
+          <li><a href="{% url 'politicas_privacidad' %}" class="footer-link" target="_blank">Políticas de privacidad</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h5>Contacto</h5>
+        <ul class="list-unstyled">
+          <li><a href="{% url 'formulario_contacto' %}" class="footer-link" target="_blank">Formulario de contacto</a></li>
+        </ul>
+      </div>
+    </div>
+    <p id="footer_text">Tech Market 2024 | Todos los derechos reservados | Temuco de Chile</p>
+  </div>
+</footer>

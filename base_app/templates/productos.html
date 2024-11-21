@@ -1,0 +1,183 @@
+{% extends "layout/main.html" %}
+
+{% load math_filters %}
+{% load static %}
+
+
+{% block content %}
+<style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    .filters {
+      position: fixed;
+      top: 100px;
+      left: 20px;
+      width: 250px;
+    }
+    .publicidad {
+      position: fixed;
+      top: 100px;
+      right: 20px;
+      width: 200px;
+    }
+    .product-list {
+      margin-left: 300px;
+      margin-right: 240px;
+      margin-top: 100px;
+    }
+    .product-card {
+      border: 1px solid #ccc;
+      margin-bottom: 20px;
+      padding: 15px;
+      border-radius: 5px;
+    }
+    .product-card img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 5px;
+    }
+    .filters a, .filters p {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .w-auto{
+      margin-bottom: 5%;
+    }
+</style>
+
+  
+  <!-- Filtros -->
+  <div class="filters">
+    <h5>Filtros</h5>
+    <input type="text" class="form-control mb-3" placeholder="Palabra clave">
+    <p>Resultados</p>
+    <a href="#" class="btn btn-outline-secondary btn-sm">Borrar Filtros</a>
+    <hr>
+    <select class="form-select w-auto">
+      <option selected>Marca</option>
+      <option value="1">Apple</option>
+      <option value="2">Samsung</option>
+      <option value="2">Lenovo</option>
+    </select>
+  
+    <select class="form-select w-auto">
+      <option selected>Estado</option>
+      <option value="1">Nuevo</option>
+      <option value="2">Usado</option>
+      <option value="2">Reacondicionado<ption>
+    </select>
+  
+  
+    <select class="form-select w-auto">
+      <option selected>Precio</option>
+      <option value="1">Precio más bajo</option>
+      <option value="2">Precio más alto</option>
+    </select>
+  
+    <select class="form-select w-auto">
+      <option selected>Región</option>
+      <option value="1">Temuco</option>
+      <option value="2">Padre Las Casas</option>
+    </select>
+    
+  </div>
+  
+  <!-- Publicidad -->
+  <div class="publicidad">
+    <h5>Publicidad</h5>
+    <div class="card">
+      <img src="{% static 'publicidad1.jpeg' %}" class="card-img-top" alt="Publicidad">
+
+      <div class="card-body">
+        <p class="card-text">Espacio para publicidad.</p>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Lista de productos desplazable -->
+  <div class="product-list">
+    <div class="d-flex justify-content-between">
+      <h5>Ordenar por:</h5>
+      <select class="form-select w-auto">
+        <option selected>Destacados</option>
+        <option value="1">Precio más bajo</option>
+        <option value="2">Precio más alto</option>
+      </select>
+    </div>
+    
+    <!-- Producto 1 -->
+    {%for producto in productos%}
+    <div class="product-card">
+      <div class="row">
+        <div class="col-md-4">
+          <img src="https://via.placeholder.com/250x200" alt="Producto">
+        </div>
+        <div class="col-md-8">
+          <div class="d-flex justify-content-between">
+            <div>
+              <h5>{{ producto.nombre }}</h5>
+              <p>{{producto.descripcion}}</p>
+            </div>
+            <div class="text-end">
+              <p>${{producto.precio}}</p>
+              <a href="#" class="btn btn-outline-success">Comprar</a>
+              <a href="#" class="btn btn-outline-success">Guardar</a>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between mt-2">
+            <div>
+              <small><i class="bi bi-camera"></i> 5 fotos</small> | 
+              <small><i class="bi bi-film"></i> 2 videos</small>
+            </div>
+            <div>
+              <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#contactModal">Contactar al vendedor</button>
+              <a href="/producto/{{producto.id_prod}}" class="btn btn-outline-primary">Ver detalles</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> 
+    {%endfor%}
+  
+  </div>
+  
+  <!-- Modal para contactar al vendedor -->
+  <div class="modal fade" id="contactModal" tabindex="-1" aria-labelledby="contactModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="contactModalLabel">Contacta al vendedor</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="message" class="form-label">Envia un mensaje</label>
+              <textarea class="form-control" id="message" rows="3"></textarea>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Nombre">
+            </div>
+            <div class="mb-3">
+              <input type="email" class="form-control" placeholder="Correo Electrónico">
+            </div>
+            <div class="mb-3">
+              <input type="tel" class="form-control" placeholder="Número de Teléfono">
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Contactar al Vendedor</button>
+          </form>
+          <hr>
+          <div class="text-center">
+            <p>Llamar al vendedor: +56 9 7333 1626</p>
+            <a href="https://wa.me/+56973331626?text=Hola!%20Me%20interesa%20este%20producto%20¿Aún%20disponible?" target="_blank" class="btn btn-outline-success"><i class="bi bi-whatsapp"></i> Enviar WhatsApp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock content %}

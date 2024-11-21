@@ -1,0 +1,63 @@
+<style>
+        .profile-header {
+            position: relative;
+            background-color: #e9ecef;
+            height: 200px;
+            text-align: center;
+        }
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            position: absolute;
+            bottom: -50px;
+            left: 20px;
+        }
+        .profile-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            padding-top: 60px;
+        }
+        .vendor-info {
+            margin-left: 140px;
+            color: white;
+        }
+        .vendor-name {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        .vendor-followers {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+        .btn-contact, .btn-follow {
+            margin-left: 10px;
+        }
+        .tab-content {
+            margin-top: 20px;
+        }
+        .info-box {
+            padding: 20px;
+            border: none;
+            border-radius: 3%;
+            background-color: #2a2a2a;
+        }
+</style>
+
+<div class="profile-header">
+    <img src="https://via.placeholder.com/100" alt="Profile Image" class="profile-image">
+</div>
+<div class="container profile-info">
+    <div class="vendor-info">
+        <div class="vendor-name">{{user.username}}</div>
+        <div class="vendor-followers">12mil seguidores</div>
+    </div>
+    <div>
+        <button class="btn btn-primary btn-follow" onclick="window.location.href='/editar_perfil'">Editar Perfil</button>
+
+    </div>
+</div>
+

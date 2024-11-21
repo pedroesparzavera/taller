@@ -1,0 +1,62 @@
+{%load static%}
+
+<style>
+  .dropdown-toggle::after {
+  display: none;
+  }
+
+  .nav{
+    background-color: #3b3a39;
+  }
+
+  .nav-link{
+    color: white;
+  }
+
+  .nav-link :hover, :active{
+    color: rgb(255, 255, 255);
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container-fluid">
+    
+    <a href="/home">  <img src="{% static 'logo.png' %}" style="height: 60px; width: 60px;" class="rounded-circle" alt="logo"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/home">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="/productos">Productos</a></li>
+        <li class="nav-item"><a class="nav-link" href="/productos/Tecnologia">Tecnología</a></li>
+        <li class="nav-item"><a class="nav-link" href="/productos/Hardware">Hardware</a></li>
+        <li class="nav-item"><a class="nav-link" href="/productos/Perifericos">Periféricos</a></li>
+        <li class="nav-item"><a class="nav-link" href="/productos/Otros">Otros</a></li>
+   
+        <li class="nav-item"><a class="nav-link" href="/publicar">Publicar</a></li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Busca tu producto" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      </form>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <img src="{% static 'usuario.png' %}" style="height: 40px; width: 40px; margin-left: 50%;" class="rounded-circle" alt="Profile">
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="background-color: rgb(231, 231, 231);">
+                {% if request.user.is_authenticated %}
+                    <li><a class="dropdown-item" href="/perfil_usu">{{ request.user }}</a></li>
+                    <li><a class="dropdown-item" href="/logout">Cerrar Sesión</a></li>
+                {% else %}
+                    <li><a class="dropdown-item" href="/login">Iniciar Sesión</a></li>
+                    <li><a class="dropdown-item" href="/registro_usuario">Registrarse</a></li>
+                {% endif %}
+            </ul>
+        </li>
+      </ul>
+    
+    </div>
+  </div>
+</nav>

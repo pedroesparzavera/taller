@@ -1,0 +1,128 @@
+{% extends "layout/main.html" %}
+
+{% load math_filters %}
+
+{% block content %}
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+    }
+    .info_vendedor {
+        display: flex;
+        justify-content: space-between;
+    }
+    .heart-button {
+        background-color: rgba(255, 255, 255, 0);
+        color: gray;
+        border: none;
+        font-size: 40px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .heart-button:hover {
+        color: rgb(110, 110, 110);
+    }
+    .heart-button:active {
+        border: rgba(255, 255, 255, 0);
+    }
+    .detalle_prod {
+        color: white;
+    }
+    hr {
+        color: white;
+    }
+    .d-block, .nombre_usuario, .ciu_usu {
+        text-decoration: none;
+        color: white;
+    }
+    .info_vendedor {
+        text-decoration: none;
+        color: white;
+    }
+    .image-gallery img {
+        width: 100%;
+        max-height: 400px;
+        object-fit: cover;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+</style>
+
+<div class="container mt-5 pt-5">
+    <div class="row">
+        <!-- Columna de Publicidad -->
+        <div class="col-md-2">
+            <div class="bg-secondary text-white text-center py-5">PUBLICIDAD</div>
+        </div>
+
+        <!-- Detalles del Producto -->
+        <div class="col-md-7">
+            <a href="/productos" class="d-block mb-2">&larr; Volver</a>
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-8">
+                        <!-- Galería de Imágenes -->
+                        <div class="image-gallery">
+                            {% for foto in producto.fotos.all %}
+                                <img src="{{ foto.ruta_foto }}" alt="Imagen del producto">
+                            {% empty %}
+                                <img src="https://via.placeholder.com/400" alt="Imagen no disponible">
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ producto.nombre }}</h5>
+                            <h4 class="text-primary">${{ producto.precio }}</h4>
+                            <button class="heart-button" onclick="window.location.href='#';">&hearts;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info_vendedor">
+                <h5><a class="nombre_usuario" href="/perfil_usu">{{ user.username }}</a></h5>
+                <h5><p class="ciu_usu">Ciudad del vendedor</p></h5>
+            </div>
+
+            <hr>
+
+            <div>
+                <h5>Descripción del producto</h5>
+                <p>{{ producto.descripcion }}</p>
+            </div>
+
+            <hr>
+
+            <h5>Detalles de producto</h5>
+            <ul class="detalle_prod">
+                <li><strong>Producto:</strong> {{ producto.nombre }}</li>
+                <li><strong>Entrega:</strong> Lorem ipsum dolor sit amet</li>
+                <li><strong>Color:</strong> Rojo</li>
+                <li><strong>Condición:</strong> Nuevo</li>
+                <li><strong>Otro:</strong> Tiene detalles estéticos</li>
+            </ul>
+        </div>
+
+        <!-- Contacto del Vendedor -->
+        <div class="col-md-3">
+            <div class="card p-3">
+                <h6>Contacta al vendedor</h6>
+                <form>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="3" placeholder="Envíe un mensaje"></textarea>
+                    </div>
+                    <input type="text" class="form-control mb-2" placeholder="Nombre">
+                    <input type="email" class="form-control mb-2" placeholder="Correo Electrónico">
+                    <input type="tel" class="form-control mb-2" placeholder="Número de Teléfono">
+                    <button type="submit" class="btn btn-primary btn-block">Contactar al Vendedor</button>
+                    <a href="#" class="btn btn-success btn-block mt-2">Enviar WhatsApp</a>
+                </form>
+                <p class="text-center mt-3">Llamar al vendedor<br><strong>+56 9 1111 1111</strong></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
