@@ -26,9 +26,13 @@ class PublicarProductoForm(forms.Form):
     )
     imagenes = forms.FileField(
         label="Imágenes",
-        widget=forms.FileInput(attrs={'multiple': True}),
+        widget=forms.FileInput(attrs={'multiple': False}),
         required=False
     )
+
+    marca = forms.ChoiceField(label="Marca", choices=get_marcas)
+    categoria = forms.ChoiceField(label="Categoría", choices=get_categorias)
+    condicion_producto = forms.ChoiceField(label="Condición del producto", choices=get_condiciones)
 
 class Form_Usu_Regis(UserCreationForm):
     email = forms.EmailField(

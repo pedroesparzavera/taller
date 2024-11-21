@@ -121,9 +121,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 #MEDIA_URL= '/images/'
+from marketplace import settings
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+print("ROOT: ",settings.MEDIA_ROOT)
+print("URL: ",settings.MEDIA_URL)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 

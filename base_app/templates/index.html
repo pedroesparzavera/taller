@@ -28,11 +28,10 @@
                 {% for producto in productos_recientes_start%}
                 <div class="col-md-3">
                 <div class="card">
-                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="{{ producto.nombre }}">
+                    <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}">
                     <div class="card-body">
                     <h5 class="card-title">{{ producto.nombre }}</h5>
-                    <p class="card-text">${{producto.precio}}</p>
-    
+                    <p class="card-text">${{ producto.precio }}</p>
                     </div>
                 </div>
                 </div>
@@ -45,10 +44,10 @@
                 {% for producto in productos_recientes_end %}
                 <div class="col-md-3">
                 <div class="card">
-                    <img src="https://via.placeholder.com/150" class="card-img-top" alt="{{ producto.nombre }}">
+                    <img src="{{ producto.imagen }}" class="card-img-top" alt="{{ producto.nombre }}">
                     <div class="card-body">
                     <h5 class="card-title">{{ producto.nombre }}</h5>
-                    <p class="card-text">${{producto.precio}}</p>
+                    <p class="card-text">${{ producto.precio }}</p>
                     </div>
                 </div>
                 </div>
@@ -76,7 +75,7 @@
                 <div class="card">
                     <img src="https://via.placeholder.com/150" class="card-img-top" alt="Producto 1">
                     <div class="card-body">
-                    <h5 class="card-title">Nombre del producto</h5>
+                    <h5 class="card-title">notebook</h5>
                     <p class="card-text">$123.456</p>
                     </div>
                 </div>

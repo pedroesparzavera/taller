@@ -64,11 +64,7 @@
                     <div class="col-md-8">
                         <!-- Galería de Imágenes -->
                         <div class="image-gallery">
-                            {% for foto in producto.fotos.all %}
-                                <img src="{{ foto.ruta_foto }}" alt="Imagen del producto">
-                            {% empty %}
-                                <img src="https://via.placeholder.com/400" alt="Imagen no disponible">
-                            {% endfor %}
+                                <img src="{{ producto.imagen.url }}" alt="Imagen no disponible">
                         </div>
                     </div>
                     <div class="col-md-4">

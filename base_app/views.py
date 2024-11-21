@@ -7,6 +7,8 @@ from base_app.models import Producto, Categoria, Marca, Condicion_Producto, Perf
 from base_app.forms import PublicarProductoForm
 from django.contrib.auth.decorators import login_required
 from django.core.files.storage import FileSystemStorage
+import os
+from marketplace import settings
 
 def index(request):
     productos_recientes = Producto.objects.all()[:6]  # Para el Carrousel, 6  productos más recientes
